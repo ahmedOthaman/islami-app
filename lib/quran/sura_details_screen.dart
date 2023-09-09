@@ -36,8 +36,8 @@ class _SuraDetailsState extends State<SuraDetails> {
       ),
      ),
          body:verses.length==0?
-             CircularProgressIndicator()
-         :
+         Center(child: CircularProgressIndicator())
+             :
          Container(
            decoration: BoxDecoration(
              borderRadius: BorderRadius.circular(25),
@@ -45,7 +45,7 @@ class _SuraDetailsState extends State<SuraDetails> {
            ),
            margin: EdgeInsets.symmetric(
              horizontal:MediaQuery.of(context).size.width *0.05 ,
-             vertical: MediaQuery.of(context).size.height *0.08
+             vertical: MediaQuery.of(context).size.height *0.08,
            ),
            padding: EdgeInsets.all(2),
            child: ListView.separated(
