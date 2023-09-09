@@ -11,6 +11,9 @@ class MyTheme{
       centerTitle: true,
       backgroundColor: Colors.transparent,
       elevation: 0,
+      iconTheme: IconThemeData(
+        color: blackcolor,
+      )
     ),
     textTheme: TextTheme(
      titleLarge: TextStyle(
@@ -18,6 +21,16 @@ class MyTheme{
        fontWeight: FontWeight.w700,
        color:blackcolor,
      ),
+      titleMedium: TextStyle(
+        fontSize: 25,
+        fontWeight: FontWeight.w600,
+        color:blackcolor,
+      ),
+      titleSmall: TextStyle(
+        fontSize: 25,
+        fontWeight: FontWeight.w400,
+        color:blackcolor,
+      ),
     ),
    bottomNavigationBarTheme: BottomNavigationBarThemeData(
      selectedItemColor: blackcolor,
