@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:untitled1/provider/app_config.dart';
 import 'package:untitled1/quran/item_sura_details.dart';
 
 import '../my_theme.dart';
@@ -16,6 +18,7 @@ class _SuraDetailsState extends State<SuraDetails> {
 
   @override
   Widget build(BuildContext context) {
+    var provider=Provider.of<AppConfigProvider>(context);
     var args=ModalRoute.of(context)?.settings.arguments as SuraDetailsArgs;
   if(verses.isEmpty){
     Loadfile(args.index);
@@ -23,16 +26,26 @@ class _SuraDetailsState extends State<SuraDetails> {
 
     return Stack(
       children: [
-      Image.asset('assets/images/main_background.png',
-      width: double.infinity,
-      height: double.infinity,
-      fit: BoxFit.fill,
-    ),
+        provider.isDark()?
+        Image.asset('assets/images/bg_dark.png',
+          width: double.infinity,
+          height: double.infinity,
+          fit: BoxFit.fill,
+        )
+            :  Image.asset('assets/images/main_background.png',
+          width: double.infinity,
+          height: double.infinity,
+          fit: BoxFit.fill,
+        ),
        Scaffold(
           appBar: AppBar(
           title: Text(
              '${args.name}',
-            style: MyTheme.lighttheme.textTheme.titleLarge,
+            style: MyTheme.darktheme.textTheme.titleLarge!.copyWith(
+              color: provider.isDark()?
+                 MyTheme.Whitecolor
+                 :MyTheme.blackcolor
+            ),
       ),
      ),
          body:verses.length==0?
@@ -41,7 +54,10 @@ class _SuraDetailsState extends State<SuraDetails> {
          Container(
            decoration: BoxDecoration(
              borderRadius: BorderRadius.circular(25),
-             color: MyTheme.Whitecolor,
+             color:provider.isDark()?
+              MyTheme.blackcolor:
+              Theme.of(context).primaryColorLight
+    ,
            ),
            margin: EdgeInsets.symmetric(
              horizontal:MediaQuery.of(context).size.width *0.05 ,
@@ -51,7 +67,10 @@ class _SuraDetailsState extends State<SuraDetails> {
            child: ListView.separated(
              separatorBuilder: (context,index){
                return  Divider(
-                 color: Theme.of(context).primaryColor,
+                 color:provider.isDark()?
+               MyTheme.Whitecolor:
+               Theme.of(context).primaryColor
+               ,
                  thickness: 2,
                );
              },

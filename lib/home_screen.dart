@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:untitled1/hadeth/hadeth_tab.dart';
+import 'package:untitled1/provider/app_config.dart';
 import 'package:untitled1/quran/quran_tab.dart';
+import 'package:untitled1/settinges/settinges.dart';
 import 'package:untitled1/tasbeh/tasbeh_tab.dart';
 import 'package:untitled1/my_theme.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'radio/radio_tab.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,18 +21,28 @@ int selectedindex=1;
 
   @override
   Widget build(BuildContext context) {
+    var provider=Provider.of<AppConfigProvider>(context);
     return Stack(
-    children: [
-      Image.asset('assets/images/main_background.png',
+    children: [provider.isDark()?
+      Image.asset('assets/images/bg_dark.png',
         width: double.infinity,
         height: double.infinity,
         fit: BoxFit.fill,
-      ),
+      )
+       : Image.asset('assets/images/main_background.png',
+        width: double.infinity,
+        height: double.infinity,
+        fit: BoxFit.fill,
+    ),
       Scaffold(
       appBar: AppBar(
         title: Text(
-          'Islami',
-         style: MyTheme.lighttheme.textTheme.titleLarge,
+          AppLocalizations.of(context)!.app_title,
+         style: MyTheme.darktheme.textTheme.titleLarge!.copyWith(
+             color: provider.isDark()?
+             MyTheme.Whitecolor
+                 :MyTheme.blackcolor
+         ),
         ),
       ),
         bottomNavigationBar:Theme(
@@ -47,40 +60,44 @@ int selectedindex=1;
             },
             items: [
               BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage('assets/images/icon_radio.png'),
+                icon:ImageIcon(AssetImage('assets/images/icon_quran.png',),
+
                 ),
-                label: 'Radio',
+                label:  AppLocalizations.of(context)!.quran,
+              ),
+              BottomNavigationBarItem(
+                icon:ImageIcon(AssetImage('assets/images/icon_hadeth.png',),
+
+                ),
+                label: AppLocalizations.of(context)!.hadeth,
               ),
               BottomNavigationBarItem(
                 icon:ImageIcon(AssetImage('assets/images/icon_sebha.png',),
 
                 ),
-                label: 'Tasbeh',
+                label: AppLocalizations.of(context)!.sebha,
               ),
 
               BottomNavigationBarItem(
-                icon:ImageIcon(AssetImage('assets/images/icon_hadeth.png',),
-
+                icon: ImageIcon(AssetImage('assets/images/icon_radio.png'),
                 ),
-                label: 'Hadeth',
+                label:  AppLocalizations.of(context)!.radio,
               ),
+
               BottomNavigationBarItem(
-                icon:ImageIcon(AssetImage('assets/images/icon_quran.png',),
-
-                ),
-                label: 'Quran',
+              icon:Icon(Icons.settings),
+              label:  AppLocalizations.of(context)!.settinges,
               ),
-
             ],
           ),
         ),
 
-    body: tabs[selectedindex],
+        body: tabs[selectedindex],
       ),
     ],
     );
   }
   List<Widget>tabs=[
-    RadioTab(),TasbehTab(),HadethTab(),QuranTab()
+    QuranTab() ,HadethTab(),TasbehTab(),RadioTab(),SettingesTab()
   ];
 }

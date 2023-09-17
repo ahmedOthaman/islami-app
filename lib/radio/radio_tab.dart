@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:untitled1/my_theme.dart';
+import 'package:untitled1/provider/app_config.dart';
 
 class RadioTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var provider= Provider.of<AppConfigProvider>(context);
     return Center(
       child: Column(
         children: [
@@ -22,15 +26,21 @@ class RadioTab extends StatelessWidget {
                 children: [
                   Icon(Icons.skip_next_rounded,
                   size: 45,
-                    color: Theme.of(context).primaryColor,
+                    color: provider.isDark()?
+                    MyTheme.Whitecolor:
+                    Theme.of(context).primaryColor
                   ),
                   Icon(Icons.play_arrow,
                     size: 55,
-                    color: Theme.of(context).primaryColor,
+                      color: provider.isDark()?
+                      MyTheme.Whitecolor:
+                      Theme.of(context).primaryColor
                   ),
                   Icon(Icons.skip_next_rounded,
                     size: 45,
-                    color: Theme.of(context).primaryColor,
+                      color: provider.isDark()?
+                      MyTheme.Whitecolor:
+                      Theme.of(context).primaryColor
                   ),
                 ],
               ),
