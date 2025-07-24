@@ -1,0 +1,83 @@
+
+
+import 'package:flutter/material.dart';
+
+
+class MyTheme{
+ static Color blackcolor=Color(0xff242424);
+ static Color praimarylight=Color(0xffB7935F);
+ static Color praimarydark=Color(0xff141A2E);
+ static Color yellowcolor=Color(0xffFACC1D);
+ static Color Whitecolor=Colors.white;
+
+
+ static ThemeData lightTheme=ThemeData(
+    primaryColor: praimarylight,
+    scaffoldBackgroundColor: Colors.transparent,
+    appBarTheme: AppBarTheme(
+      centerTitle: true,
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      iconTheme: IconThemeData(
+        color: blackcolor,
+      )
+    ),
+    textTheme: TextTheme(
+     titleLarge: TextStyle(
+       fontSize: 30,
+       fontWeight: FontWeight.w700,
+       color:blackcolor,
+     ),
+      titleMedium: TextStyle(
+        fontSize: 25,
+        fontWeight: FontWeight.w600,
+        color:blackcolor,
+      ),
+      titleSmall: TextStyle(
+        fontSize: 25,
+        fontWeight: FontWeight.w400,
+        color:blackcolor,
+      ),
+    ),
+   bottomNavigationBarTheme: BottomNavigationBarThemeData(
+     selectedItemColor: blackcolor,
+     unselectedItemColor:Whitecolor, 
+   ),
+  );
+
+ static ThemeData darktheme=ThemeData(
+
+   primaryColor: praimarydark,
+   scaffoldBackgroundColor: Colors.transparent,
+   appBarTheme: AppBarTheme(
+       centerTitle: true,
+       backgroundColor: Colors.transparent,
+       elevation: 0,
+       iconTheme: IconThemeData(
+         color: Whitecolor,
+       )
+   ),
+
+   textTheme: TextTheme(
+     titleLarge: TextStyle(
+       fontSize: 30,
+       fontWeight: FontWeight.w700,
+       color:Whitecolor
+     ),
+     titleMedium: TextStyle(
+       fontSize: 25,
+       fontWeight: FontWeight.w600,
+       color:Whitecolor,
+     ),
+     titleSmall: TextStyle(
+       fontSize: 25,
+       fontWeight: FontWeight.w400,
+       color:yellowcolor,
+     ),
+   ),
+   bottomNavigationBarTheme: BottomNavigationBarThemeData(
+     selectedItemColor: praimarylight,
+     unselectedItemColor:Whitecolor,
+   ),
+ );
+}
